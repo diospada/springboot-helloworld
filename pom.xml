@@ -49,7 +49,7 @@
             <executions>
               <execution>
                 <id>copy-windows</id>
-                <phase>validate</phase>
+                <phase>package</phase>
                 <goals>
                   <goal>copy-resources</goal>
                 </goals>
@@ -57,7 +57,7 @@
                   <outputDirectory>${basedir}/target/windows</outputDirectory>
                   <resources>
                     <resource>
-                      <directory>src/resource/windows</directory>
+                      <directory>windows</directory>
                       <filtering>true</filtering>
                     </resource>
                   </resources>
