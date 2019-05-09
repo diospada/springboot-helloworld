@@ -41,6 +41,32 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>3.0.1</version>
             </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <id>copy-windows</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${basedir}/target/windows</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/resource/windows</directory>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+             </executions>
+          </plugin>
+
+
         </plugins>
     </build>
 
