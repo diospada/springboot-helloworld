@@ -54,7 +54,7 @@
                   <goal>copy-resources</goal>
                 </goals>
                 <configuration>
-                  <outputDirectory>${basedir}/target/windows</outputDirectory>
+                  <outputDirectory>${basedir}/target</outputDirectory>
                   <resources>
                     <resource>
                       <directory>windows</directory>
