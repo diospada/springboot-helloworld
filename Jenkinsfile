@@ -55,7 +55,7 @@ pipeline {
             steps {
                 sleep(time:1,unit:"SECONDS")
                 echo 'Copy artifact..'
-                copyArtifacts filter: '**/*.jar', fingerprintArtifacts: true, flatten: true, projectName: "${env.JOB_NAME}", selector: lastCompleted(), target: "${installationDir}"
+                copyArtifacts filter: '**/*.jar', fingerprintArtifacts: true, flatten: true, projectName: "${env.JOB_NAME}", target: "${installationDir}"
             }
         }
 
