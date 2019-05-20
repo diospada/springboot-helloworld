@@ -25,8 +25,8 @@ pipeline {
         stage('checkout') {
             steps {
                 echo 'checkout from repository..'
-                 cleanWs()
-                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: "${urlGitRepository}"]]])
+                 cleanWs() 
+                 checkout([$class: 'GitSCM', branch: "${env.BRANCH_NAME}", doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: "${urlGitRepository}"]]])
             }
         }
         stage('Building') {
