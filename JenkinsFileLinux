@@ -17,7 +17,7 @@ def jarName = ""
 
 pipeline {
     agent {
-       label 'test'
+       label 'slaveLinux'
     }
     stages {
         stage('checkout') {
@@ -30,16 +30,13 @@ pipeline {
         stage('Building') {
             steps {
                 echo 'Building..'
-                withMaven(maven : 'maven_3.5.4') {
-                    bat 'mvn clean compile'
-                }
+                sh 'mvn clean compile'
             }
         }
         stage('Package') {
             steps {
                 echo 'Package..'
-                withMaven(maven : 'maven_3.5.4') {
-                    bat 'mvn package install'
+                    sh 'mvn package install'
                     script{
                         versionName = versionFromPom();
                         serviceName = artifactFromPom();
@@ -47,7 +44,6 @@ pipeline {
                     }
                     echo "mvn package install versionName=${versionName} serviceName=${serviceName} jarName=${jarName}"
                 }
-            }
         }
         stage('Copy artifact') {
             steps {
@@ -55,6 +51,16 @@ pipeline {
                 copyArtifacts filter: '**/*.jar', fingerprintArtifacts: true, flatten: true, projectName: "${env.JOB_NAME}", target: "${installationDir}", selector: specific("${currentBuild.number}")
             }
         }
+        stage('Deploy on Linux') {
+            steps {
+                echo "Deploy on Linux.."
+                echo "sudo ${installationDir}/install_linux_service.sh ${serviceName} ${installationDir} ${jarName}"
+                sh "sudo ${installationDir}/install_linux_service.sh ${serviceName} ${installationDir} ${jarName}"
+
+            }
+        }
+      
+        
 }
 
 }
