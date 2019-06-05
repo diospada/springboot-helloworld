@@ -19,7 +19,7 @@ def jarName = ""
 
 pipeline {
     agent {
-       label 'window10slave'
+       label 'test'
     }
     stages {
         stage('checkout') {
