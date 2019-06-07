@@ -60,8 +60,6 @@ pipeline {
         stage('Deploy on Linux') {
             steps {
                 echo "Deploy on Linux.."
-                //echo "sudo ${installationDir}/install_linux_service.sh ${serviceName} ${installationDir} ${jarName}"
-                //sh "sudo ${installationDir}/install_linux_service.sh ${serviceName} ${installationDir} ${jarName}"
                 deployLinuxService (serviceName: "${serviceName}", jarName: "${jarName}", installationDir : "${installationDir}")
             }
         }
